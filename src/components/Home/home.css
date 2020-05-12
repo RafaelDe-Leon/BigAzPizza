@@ -1,0 +1,118 @@
+body {
+  overflow-x: hidden;
+}
+
+.main-img {
+  background: url('./img/parking2.jpg');
+  height: 850px;
+  margin-top: -20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.main-quote {
+  font-size: 65px;
+  color: white;
+  font-weight: bold;
+}
+
+.main-quote-margin {
+  padding-top: 150px;
+}
+
+/* section 2 */
+
+.section-two {
+  margin: 50px 0px;
+}
+
+.side-img {
+  background: url('./img/parking3.jpg');
+  height: 450px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+/* section 3 */
+
+.section-three {
+  background-color: lightgrey;
+  padding-bottom: 100px;
+}
+
+.title-section-three {
+  font-size: 50px;
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.reviews {
+  margin-top: 60px;
+}
+
+.reviews-two {
+  margin-top: 40px;
+}
+
+.reviewstyle {
+  font-size: 20px;
+  font-style: italic;
+  color: rgb(53, 53, 53);
+}
+
+.home-signup {
+  margin-top: 30px;
+  width: 150px;
+  font-weight: bold;
+}
+
+.home-title-control {
+  /* border-bottom: dotted 1px black; */
+  /* padding-bottom: 30px; */
+}
+
+.home-button-control {
+  margin-top: 40px;
+}
+
+.home-button-size {
+  width: 150px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.paragraph-container-control {
+  margin-bottom: 25px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+/* favicon */
+
+.home-favicon {
+  margin-top: 15px;
+  font-size: 35px;
+  color: rgb(0, 110, 255);
+}
+
+.favi-paragraph {
+  margin-top: 15px;
+  margin-left: 5px;
+}
+
+.scrolldown {
+  font-size: 30px;
+  margin-top: 400px;
+  color: white;
+  /* border: red 2px solid; */
+}
+
+@media screen and (max-width: 700px) {
+  .side-img {
+    height: 200px;
+  }
+}

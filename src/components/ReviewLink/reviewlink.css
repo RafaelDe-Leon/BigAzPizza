@@ -1,0 +1,16 @@
+.text-review {
+  color: rgb(255, 255, 255);
+  /* background-color: rgb(255, 233, 110); */
+  padding: 2px;
+  text-align: center;
+  width: 300px;
+  max-width: 350px;
+  margin-top: 15px auto;
+  /* margin-left: 45%; */
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.text-review:hover {
+  color: rgb(249, 251, 253);
+}

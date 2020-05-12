@@ -1,0 +1,74 @@
+.card {
+  width: 18rem;
+}
+
+.userNameOnAccount {
+  font-size: 39px;
+  text-align: right;
+
+  padding-top: 5%;
+  margin-bottom: 10%;
+}
+
+.accountUserImg {
+  background-image: url('https://journeypurebowlinggreen.com/wp-content/uploads/2018/05/placeholder-person.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.8;
+  height: 300px;
+  margin-top: 15%;
+  margin-bottom: 10%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.uploadBTN {
+  font-weight: bold;
+}
+.uploadBTN1 {
+  font-weight: bold;
+  background-color: rgb(230, 230, 230);
+}
+
+.userEditAccFav {
+  font-size: 20px;
+  color: rgb(240, 48, 48);
+}
+
+.contactBtn {
+  text-align: center;
+  padding-top: 10%;
+}
+
+.contactText {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.extendEmail {
+  width: 150px;
+}
+
+.pushDownTopCon {
+  padding-top: 20px;
+}
+
+.pushDownBottomConContent {
+  padding-top: 20px;
+}
+
+.accountInfo {
+  padding-bottom: 10px;
+}
+
+.accountInfoCon {
+  border: 1px solid rgb(128, 128, 128);
+  margin-top: 125px;
+  margin-bottom: 250px;
+  box-shadow: 2px 3px 6px 4px #b3b3b3;
+}
+
+/* .table-hover:focus:hover {
+  background-color: blue;
+} */
