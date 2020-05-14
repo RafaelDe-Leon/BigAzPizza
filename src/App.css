@@ -94,8 +94,10 @@ body {
 
 /* end of heading-button */
 
-.img-test {
+.section-one-img {
+  height: 200px;
   width: 300px;
+  padding: 10px;
 }
 
 .App-logo {
@@ -148,6 +150,11 @@ a:hover {
 .wrapper {
   width: 1400px;
   margin: 0 auto;
-  border: solid black 1px;
   padding: 30px;
+}
+
+.img-section-wrapper {
+  border: solid black 1px;
+  box-shadow: 1px 5px 25px 1px #888888;
+  margin-right: 10px;
 }
