@@ -7,12 +7,13 @@ export default function ContactUS() {
       <div className='container-fluid '>
         {/* Image Row */}
         <div className='containerControl'>
-          <div className='contactUsIMG'>
-            {/* <a
-              target='_blank'
-              href='https://www.google.com/maps/place/80+W+Fordham+Rd,+The+Bronx,+NY+10468/@40.8625957,-73.9043808,16z/data=!4m5!3m4!1s0x89c2f389d9f65b47:0xa9fdb069e22a0520!8m2!3d40.8626469!4d-73.9044242'
-            ></a> */}
-          </div>
+          <a
+            target='_blank'
+            href='https://www.google.com/maps/place/80+W+Fordham+Rd,+The+Bronx,+NY+10468/@40.8625957,-73.9043808,16z/data=!4m5!3m4!1s0x89c2f389d9f65b47:0xa9fdb069e22a0520!8m2!3d40.8626469!4d-73.9044242'
+          >
+            <div className='contactUsIMG'></div>
+          </a>
+
           {/* Write to us Text */}
           <div className='row'>
             <div className='col-lg-4'></div>
