@@ -8,7 +8,7 @@ import LocationPG from './Pages/Location';
 
 import {
   BrowserRouter as Router,
-  Route,
+  Route
   // Switch,
   // Redirect
 } from 'react-router-dom';
@@ -182,10 +182,10 @@ function App() {
       </div>
       <Footer />
 
-      <Route exact path='/' component={Home} />
-      <Route exact path='/location' component={LocationPG} />
-      <Route exact path='/menu' component={MenuPG} />
-      <Route exact path='/contactus' component={ContactUsPG} />
+      <Router exact path='/' component={Home} />
+      <Router exact path='/location' component={LocationPG} />
+      <Router exact path='/menu' component={MenuPG} />
+      <Router exact path='/contactus' component={ContactUsPG} />
     </div>
   );
 }
