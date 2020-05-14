@@ -1,12 +1,24 @@
 import React from 'react';
-import './nav.css';
 import { Link } from 'react-router-dom';
-import Logo from '../Logo/logo.js';
+import './nav.css';
+import Logo from '../Logo';
 
-function Nav(props) {
+/* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+// function openNav() {
+//   document.getElementById('mySidebar').style.width = '250px';
+//   document.getElementById('main').style.marginLeft = '250px';
+// }
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+// function closeNav() {
+//   document.getElementById('mySidebar').style.width = '0';
+//   document.getElementById('main').style.marginLeft = '0';
+// }
+
+export default function Nav() {
   return (
-    <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
-      <Link to='/' className='navbar-brand logo-brand'>
+    <nav className='navbar navbar-expand-lg navbar-light bg-light '>
+      <Link to='/' className='nav-link nameText'>
         <Logo />
       </Link>
       <button
@@ -25,47 +37,25 @@ function Nav(props) {
         className='collapse navbar-collapse nav-bar-margin'
         id='navbarSupportedContent'
       >
-        <ul className='navbar-nav mr-auto'>
+        <ul className='navbar-nav mr-auto navBtns'>
           <li className='nav-item active'>
-            <Link to='/' className='nav-link'>
-              Home <span className='sr-only'>(current)</span>
+            <Link to='/menu' className='nav-link portfolioBTN'>
+              Menu
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link to='/location' className='nav-link portfolioBTN'>
+              Location
             </Link>
           </li>
 
           <li className='nav-item'>
-            <Link to='/monthly' className='nav-link'>
-              Monthly
-            </Link>
-          </li>
-          <li className='nav-item'>
-            {props.authenticated ? (
-              <li>
-                <Link to='/myaccount' className='nav-link'>
-                  My Account
-                </Link>
-              </li>
-            ) : (
-              <Link to='/signin' className='nav-link'>
-                <li> Sign In </li>
-              </Link>
-            )}
-          </li>
-
-          <li className='nav-item' onClick={props.signout}>
-            {props.authenticated ? (
-              <li>
-                <Link to='/' className='nav-link'>
-                  Sign Out
-                </Link>
-              </li>
-            ) : (
-              <div></div>
-            )}
+            <a href='/contactus' className='nav-link  portfolioBTN'>
+              Contact Us
+            </a>
           </li>
         </ul>
       </div>
     </nav>
   );
 }
-
-export default Nav;
