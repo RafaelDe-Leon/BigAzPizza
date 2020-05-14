@@ -56,7 +56,13 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-
+    <script>
+      window.onscroll = () => {
+        const nav = document.querySelector('#navbar');
+        if (this.scrollY <= 10) nav.className = '';
+        else nav.className = 'scroll';
+      };
+    </script>
     <!-- Jquery for Bootstrap -->
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

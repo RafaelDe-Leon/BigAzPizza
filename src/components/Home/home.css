@@ -3,7 +3,7 @@ body {
 }
 
 .main-img {
-  background: url('./img/parking2.jpg');
+  background: url('./img/Pizza3.jpg');
   height: 850px;
   margin-top: -20px;
   background-repeat: no-repeat;
@@ -21,6 +21,7 @@ body {
 
 .main-quote-margin {
   padding-top: 150px;
+  color: white;
 }
 
 /* section 2 */
@@ -68,6 +69,8 @@ body {
   margin-top: 30px;
   width: 150px;
   font-weight: bold;
+  background-color: rgb(156, 32, 32);
+  color: white;
 }
 
 .home-title-control {

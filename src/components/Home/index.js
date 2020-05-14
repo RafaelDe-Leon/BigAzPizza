@@ -7,11 +7,9 @@ export default function HomeComponent() {
   return (
     <div>
       <div className='main-img text-center'>
-        <h1 className='main-quote main-quote-margin col-md-12'>
-          WE PARK UPTOWN
-        </h1>
+        <h1 className='main-quote main-quote-margin col-md-12'>BigAzPizza</h1>
         <Link to='/signup'>
-          <button className='btn btn-warning home-signup'> SIGN UP </button>
+          <button className='btn home-signup'> Order Now </button>
         </Link>
 
         <p className='scrolldown'>

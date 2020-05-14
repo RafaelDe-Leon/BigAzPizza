@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './nagleparking.png';
+import logo from './BigAzPizza.png';
 import './logo.css';
 
 export default function Logo() {
