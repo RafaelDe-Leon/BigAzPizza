@@ -1,4 +1,9 @@
 .logo {
-  width: 90px;
+  width: 12%;
+  border-radius: 135px;
+
   height: auto;
+}
+.logo:hover {
+  width: 36%;
 }
