@@ -1,3 +1,25 @@
-.testing {
-  color: black;
+.contactUsIMG {
+  background: url('./BigAzPizzaLocation.png');
+  height: 600px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: cover;
+}
+.form-group {
+  text-align: left;
+}
+.containerControl {
+  width: 100%;
+  padding-right: 10%;
+  padding-left: 10%;
+}
+.contactMidText {
+  text-align: center;
+}
+.contactMidTextCon {
+  margin-top: 60px;
+}
+.locationHR {
+  margin-top: 60px;
 }
