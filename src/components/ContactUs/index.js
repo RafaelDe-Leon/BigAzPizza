@@ -28,21 +28,21 @@ export default function ContactUS() {
           {/* Location & Hours */}
           <div className='row locationHR'>
             <div className='col-lg-6'>
-              <div className='row NY'>New York </div>
-              <div className='row addHours'>
+              <div className=' NY'>New York </div>
+              <div className=' addHours'>
                 Big' Az Pizza Cafe is located in the Bronx
               </div>
-              <div className='row addHours'>
+              <div className='addHours'>
                 80 W Fordham Rd, New York, NY 10468{' '}
               </div>
-              <div className='row addHours workingHRS'>Working Hours </div>
-              <div className='row addHours'>
+              <div className='addHours workingHRS'>Working Hours </div>
+              <div className=' addHours'>
                 Sunday - Thursday 10:00 PM - 10:00PM{' '}
               </div>
-              <div className='row addHours'>
+              <div className='addHours'>
                 Friday - Saturday 10:00 PM - 10:00 PM{' '}
               </div>
-              <div className='row addHours'>(917) 891 - 8088 </div>
+              <div className='addHours'>(917) 891 - 8088 </div>
             </div>
             <div className='col-lg-6'>
               <form>
