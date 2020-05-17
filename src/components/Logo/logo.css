@@ -1,4 +1,4 @@
-.logo {
+/* .logo {
   width: 12%;
   border-radius: 135px;
 
@@ -6,4 +6,11 @@
 }
 .logo:hover {
   width: 36%;
+} */
+.logo {
+  height: 9vh;
+  padding: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 3px 3px 3px black;
 }
