@@ -30,18 +30,18 @@ export default class Navbar extends Component {
           >
             <ul className='navbar-nav mr-auto navBtns'>
               <Nav.Item>
-                <Nav.Link href='/menu' className=''>
+                <Nav.Link href='/menu' className='navBtn1'>
                   Menu
                 </Nav.Link>
               </Nav.Item>
 
               <Nav.Item>
-                <Nav.Link href='/location' className=''>
+                <Nav.Link href='/location' className='navBtn2'>
                   Location
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href='/contactus' className=''>
+                <Nav.Link href='/contactus' className='navBtn3'>
                   Contact Us
                 </Nav.Link>
               </Nav.Item>
