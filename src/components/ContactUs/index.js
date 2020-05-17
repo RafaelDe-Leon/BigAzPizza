@@ -45,7 +45,7 @@ export default function ContactUS() {
               <div className='addHours'>(917) 891 - 8088 </div>
             </div>
             <div className='col-lg-6'>
-              <form>
+              <form className='formCon'>
                 <div className='form-group'>
                   <label for=''>Name</label>
                   <input

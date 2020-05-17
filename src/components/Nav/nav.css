@@ -6,7 +6,7 @@
 .nameText {
   padding-left: 30px;
   color: rgb(161, 40, 40);
-  font-family: 'Galada', cursive;
+  /* font-family: 'Galada', cursive; */
 }
 .nameText:hover {
   color: white;
@@ -83,9 +83,24 @@ nav ul li a:hover::after {
   transform: scaleX(1);
 }
 .navBtns {
-  font-family: 'Galada', cursive;
+  /* font-family: 'Galada', cursive; */
   font-size: 18px;
   margin-left: 60%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navBtn1:hover {
+  background: transparent;
+  height: 6vh;
+}
+.navBtn2:hover {
+  background: transparent;
+  height: 6vh;
+}
+.navBtn3:hover {
+  background-color: transparent;
+  height: 6vh;
 }
 
 @keyframes slideIn {
