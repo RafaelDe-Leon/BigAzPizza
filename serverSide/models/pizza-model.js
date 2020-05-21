@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const BigAzPizza = new Schema(
+const Pizza = new Schema(
   {
     name: { type: String, required: true },
     time: { type: [String], required: true },
@@ -10,4 +10,4 @@ const BigAzPizza = new Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model('pizzas', BigAzPizza);
+module.exports = mongoose.model('pizzas', Pizza);
