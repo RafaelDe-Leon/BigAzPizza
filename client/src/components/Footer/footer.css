@@ -20,3 +20,22 @@ footer {
 .linkeninBTN {
   font-weight: bold;
 }
+.lowerFooterLinks {
+  padding-top: 60px;
+}
+.footerBorder {
+  border-top: solid rgb(230, 230, 230);
+}
+.footerItemPadding {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.socialMediaLinks {
+  margin-top: 10%;
+
+  border-top: solid rgb(230, 230, 230);
+  border-bottom: solid rgb(230, 230, 230);
+}
+.mediaLinks {
+  padding: 20px;
+}

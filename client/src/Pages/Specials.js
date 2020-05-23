@@ -1,10 +1,10 @@
 import React from 'react';
-import LocationPG from '../components/Location';
+import SpecialsPG from '../components/Specials';
 
 export default function Locations() {
   return (
     <div>
-      <LocationPG />
+      <SpecialsPG />
     </div>
   );
 }
