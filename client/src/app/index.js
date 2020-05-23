@@ -1,10 +1,10 @@
 import React from 'react';
-import Nav from './components/Nav';
-import Footer from './components/Footer';
-import Home from './Pages/Home';
-import MenuPG from './Pages/Menu';
-import ContactUsPG from './Pages/ContactUs';
-import LocationPG from './Pages/Location';
+import Nav from '../components/Nav';
+import Footer from '../components/Footer';
+import Home from '../Pages/Home';
+import MenuPG from '../Pages/Menu';
+import ContactUsPG from '../Pages/ContactUs';
+import LocationPG from '../Pages/Location';
 
 import {
   BrowserRouter as Router,
