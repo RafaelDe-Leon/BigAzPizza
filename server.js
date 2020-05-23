@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 // const cors = require('cors');
 
 const db = require('./serverSide/db');
-const pizzaRouter = require('./serverSide/routes/pizza-router');
+const pizzaRouter = require('./serverSide/routes/api/pizza-router');
 
 const app = express();
 const apiPort = 3001;

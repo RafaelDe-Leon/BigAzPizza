@@ -1,8 +1,8 @@
 import React from 'react';
-import './location.css';
+import './specials.css';
 import { Link } from 'react-router-dom';
 
-export default function LocationPG() {
+export default function SpecialsPG() {
   return (
     <div>
       <div>
