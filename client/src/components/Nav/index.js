@@ -36,8 +36,8 @@ export default class Navbar extends Component {
               </Nav.Item>
 
               <Nav.Item>
-                <Nav.Link href='/location' className='navBtn2'>
-                  Location
+                <Nav.Link href='/specials' className='navBtn2'>
+                  Specials
                 </Nav.Link>
               </Nav.Item>
               <Nav.Item>
