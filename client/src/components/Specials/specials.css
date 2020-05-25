@@ -1,0 +1,49 @@
+.mainSpecialIMG {
+  background-image: url('../../img/pizzaPIC.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: 100%;
+  height: auto;
+  min-height: 300px;
+
+  /* filter: grayscale(30%); */
+}
+.firstSpecialCon {
+  padding: 50px 30px 30px 50px;
+}
+.firstSpecialRow {
+  border: solid 1px rgb(214, 214, 214);
+  height: auto;
+  min-height: 450px;
+
+  width: 100%;
+  margin-top: 30px;
+}
+.specialsTEXT {
+  font-weight: bold;
+}
+.container1-Text1 {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 40px;
+}
+.container1-Text1-col2 {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 40px;
+  color: rgb(148, 24, 24);
+}
+.container1-Text2 {
+  margin-top: 10px;
+}
+/* Cutomize BTN */
+.container1-Text3 {
+  margin-top: 30px;
+  text-align: center;
+}
+.container1-col1 {
+  margin-top: 10%;
+  padding-left: 40px;
+}
