@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b187891e.chunk.css",
+    "main.js": "/static/js/main.725b1e62.chunk.js",
+    "main.js.map": "/static/js/main.725b1e62.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.8c40394c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.8c40394c.js.map",
+    "static/js/2.9ae657df.chunk.js": "/static/js/2.9ae657df.chunk.js",
+    "static/js/2.9ae657df.chunk.js.map": "/static/js/2.9ae657df.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.070e19dba984a86eb5da3896db60f4be.js": "/precache-manifest.070e19dba984a86eb5da3896db60f4be.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.b187891e.chunk.css.map": "/static/css/main.b187891e.chunk.css.map",
+    "static/js/2.9ae657df.chunk.js.LICENSE.txt": "/static/js/2.9ae657df.chunk.js.LICENSE.txt",
+    "static/media/contactus.css": "/static/media/BigAzPizzaLocation.f213d34a.png",
+    "static/media/InwoodMediaLOGO.JPG": "/static/media/InwoodMediaLOGO.0706584e.JPG",
+    "static/media/home.css": "/static/media/heroimg.10badab7.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.8c40394c.js",
+    "static/js/2.9ae657df.chunk.js",
+    "static/css/main.b187891e.chunk.css",
+    "static/js/main.725b1e62.chunk.js"
+  ]
+}

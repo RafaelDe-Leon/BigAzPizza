@@ -50,7 +50,8 @@ body {
 .main-heading {
   position: relative;
   height: 75vh;
-  background-image: linear-gradient( rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.315)), url(../../img/heroimg.jpg);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.315), rgba(0, 0, 0, 0.315)),
+    url(../../img/heroimg.jpg);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -85,7 +86,7 @@ body {
 /* main button animation and style */
 
 .main-button {
-  background: #97120D;
+  background: #97120d;
   color: white;
   border: none;
   height: 55px;
