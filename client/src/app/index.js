@@ -1,10 +1,10 @@
 import React from 'react';
-import Nav from './components/Nav';
-import Footer from './components/Footer';
-import Home from './Pages/Home';
-import MenuPG from './Pages/Menu';
-import ContactUsPG from './Pages/ContactUs';
-import LocationPG from './Pages/Location';
+import Nav from '../components/Nav';
+import Footer from '../components/Footer';
+import Home from '../Pages/Home';
+import MenuPG from '../Pages/Menu';
+import ContactUsPG from '../Pages/ContactUs';
+import SpecialsPG from '../Pages/Specials';
 
 import {
   BrowserRouter as Router,
@@ -23,7 +23,7 @@ class App extends React.Component {
 
           <Switch>
             <Route exact path='/' component={Home} />
-            <Route exact path='/location' component={LocationPG} />
+            <Route exact path='/specials' component={SpecialsPG} />
             <Route exact path='/menu' component={MenuPG} />
             <Route exact path='/contactus' component={ContactUsPG} />
           </Switch>

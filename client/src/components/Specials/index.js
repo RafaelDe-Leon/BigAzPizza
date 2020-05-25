@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 export default function SpecialsPG() {
   return (
     <div>
+
       {/* First container with Large IMG (full pg) */}
       <div className='container-fluid'>
         <div className='container-fluid firstSpecialCon'>
@@ -73,7 +74,7 @@ export default function SpecialsPG() {
             </div>
           </div>
         </div>
-      </div>
+
     </div>
   );
 }
