@@ -1,6 +1,6 @@
 const express = require('express');
 
-const PizzaCtrl = require('./controllers/pizza-ctrl');
+const PizzaCtrl = require('../controllers/pizza-ctrl');
 
 const router = express.Router();
 
