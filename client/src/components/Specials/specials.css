@@ -125,6 +125,7 @@
 /* Cutomize BTN */
 .container1-Text3 {
   margin-top: 15px;
+  margin-bottom: 15px;
   text-align: center;
   padding: 5px;
 }
@@ -160,7 +161,6 @@
 
   height: auto;
   width: 100%;
-  max-height: 300px;
   border-radius: 5px;
 
   border: solid 1px rgb(214, 214, 214);
