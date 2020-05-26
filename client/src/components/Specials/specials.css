@@ -1,5 +1,9 @@
+.centerPage {
+  width: 95%;
+}
+
 .mainSpecialIMG {
-  background-image: url('../../img/PizzaSpecia;.jpg');
+  background-image: url('../../img/PizzaSpecial.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -7,27 +11,105 @@
   width: 100%;
   height: auto;
   min-height: 300px;
-
-  /* filter: grayscale(30%); */
 }
+.specialProductsIMG {
+  background-image: url('../../img/Custom-Pizza.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+.specialProductsIMG2 {
+  background-image: url('../../img/Pizza:Wings.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+.specialProductsIMG3 {
+  background-image: url('../../img/2Pizzas.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+.specialProductsIMG4 {
+  background-image: url('../../img/2-2-2PIZZA.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+.specialProductsIMG5 {
+  background-image: url('../../img/$6Deal.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+.specialProductsIMG6 {
+  background-image: url('../../img/2LargePizza.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+.specialProductsIMG7 {
+  background-image: url('../../img/SidesPizza.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+
 .firstSpecialCon {
-  padding: 50px 30px 30px 50px;
+  margin: 0 auto;
+}
+.secondSpecialCon {
+  margin: 0 auto;
 }
 .firstSpecialRow {
   border: solid 1px rgb(214, 214, 214);
   height: auto;
   min-height: 450px;
+  border-radius: 5px;
 
   width: 100%;
   margin-top: 30px;
 }
 .specialsTEXT {
   font-weight: bold;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .container1-Text1 {
   margin-top: 10px;
   font-weight: bold;
   font-size: 40px;
+}
+.container1-Text2 {
+  margin-top: 10px;
 }
 .container1-Text1-col2 {
   margin-top: 10px;
@@ -35,15 +117,51 @@
   font-size: 40px;
   color: rgb(148, 24, 24);
 }
-.container1-Text2 {
-  margin-top: 10px;
-}
-/* Cutomize BTN */
-.container1-Text3 {
-  margin-top: 30px;
-  text-align: center;
-}
 .container1-col1 {
   margin-top: 10%;
   padding-left: 40px;
+}
+
+/* Cutomize BTN */
+.container1-Text3 {
+  margin-top: 15px;
+  text-align: center;
+  padding: 5px;
+}
+.container2-col1 {
+  margin-top: 3%;
+  padding-left: 20px;
+}
+.container2-Text1 {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 20px;
+}
+.container2-Text2 {
+  margin-top: 10px;
+}
+.container2-Text1-col2 {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgb(148, 24, 24);
+}
+/* Cutomize BTN */
+.container2-Text3 {
+  margin-top: 15px;
+  text-align: center;
+  float: right;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+.productContainer {
+  margin-top: 60px;
+  margin-bottom: 60px;
+
+  height: auto;
+  width: 100%;
+  max-height: 300px;
+  border-radius: 5px;
+
+  border: solid 1px rgb(214, 214, 214);
 }
