@@ -33,6 +33,7 @@
   background-position: center;
   height: 90px;
   text-align: left;
+  width: 97%;
 }
 .pastaMenuIMG {
   background-image: url('../../img/pasta.jpg');
@@ -41,6 +42,7 @@
   background-position: center;
   height: 90px;
   text-align: left;
+  width: 97%;
 }
 .saladMenuIMG {
   background-image: url('../../img/Salad.jpg');
@@ -49,6 +51,7 @@
   background-position: center;
   height: 90px;
   text-align: left;
+  width: 97%;
 }
 .dominicanMenuIMG {
   background-image: url('../../img//Dominican.jpg');
@@ -57,6 +60,7 @@
   background-position: center;
   height: 90px;
   text-align: left;
+  width: 97%;
 }
 .dessertMenuIMG {
   background-image: url('../../img/Dessert.jpg');
@@ -65,6 +69,7 @@
   background-position: center;
   height: 90px;
   text-align: left;
+  width: 97%;
 }
 .sidesMenuIMG {
   background-image: url('../../img/Sides.jpg');
@@ -73,4 +78,8 @@
   background-position: center;
   height: 90px;
   text-align: left;
+  width: 97%;
+}
+.menuItems {
+  padding: 10px;
 }
