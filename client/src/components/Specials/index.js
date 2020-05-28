@@ -20,7 +20,7 @@ export default function SpecialsPG() {
                 Choose any Large Pizza or up to 5 toppings!
               </div>
               <button className='main-button container1-Text3  '>
-                <span>Add & Customize</span>
+                <span>Customize</span>
               </button>
             </div>
           </div>
@@ -44,7 +44,7 @@ export default function SpecialsPG() {
                     & add a 6 piece order of wings!
                   </div>
                   <button className='main-button container2-Text3  '>
-                    <span>Add & Customize</span>
+                    <span>Customize</span>
                   </button>
                 </div>
               </div>
@@ -63,7 +63,7 @@ export default function SpecialsPG() {
                     Two pizzas are better than one – especially at this price
                   </div>
                   <button className='main-button container2-Text3  '>
-                    <span>Add & Customize</span>
+                    <span>Customize</span>
                   </button>
                 </div>
               </div>
@@ -81,7 +81,7 @@ export default function SpecialsPG() {
                     2-Liter!
                   </div>
                   <button className='main-button container2-Text3  '>
-                    <span>Add & Customize</span>
+                    <span>Customize</span>
                   </button>
                 </div>
               </div>
@@ -101,7 +101,7 @@ export default function SpecialsPG() {
                     more, just $6 each
                   </div>
                   <button className='main-button container2-Text3  '>
-                    <span>Add & Customize</span>
+                    <span>Customize</span>
                   </button>
                 </div>
               </div>
@@ -117,10 +117,10 @@ export default function SpecialsPG() {
                     <p className='col-md-4 container2-Text1-col2'>$15.00</p>
                   </div>
                   <div className='container2-Text2'>
-                    Two Large 1-Topping Pizzas. Imagine that!
+                    Two Large 1-Topping Pizzas. Get any kind, imagine that!
                   </div>
                   <button className='main-button container2-Text3  '>
-                    <span>Add & Customize</span>
+                    <span>Customize</span>
                   </button>
                 </div>
               </div>
@@ -134,10 +134,10 @@ export default function SpecialsPG() {
                     <p className='col-md-4 container2-Text1-col2'>$6.00</p>
                   </div>
                   <div className='container2-Text2'>
-                    Any Side (10" Cheesesticks, Breadsticks, and more!)
+                    Any Sides (10" Cheesesticks, Breadsticks, and more!)
                   </div>
                   <button className='main-button container2-Text3  '>
-                    <span>Add & Customize</span>
+                    <span>Customize</span>
                   </button>
                 </div>
               </div>
