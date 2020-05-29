@@ -37,6 +37,9 @@
 .dropDownControls2:hover {
   color: rgb(126, 23, 23);
 }
+.section-Menu {
+  margin: 100px 0;
+}
 .card-textControl {
   /* padding: 10px 0 10px 0; */
   font-size: 12px;
@@ -45,17 +48,19 @@
   font-weight: bold;
   color: rgb(126, 23, 23);
 }
+
 .addBTNControl {
   margin-top: 10px;
+  /* margin-left: 60px; */
 }
 .addPizzaBTN {
-  padding: 0 0px 0 10px;
+  /* padding: 0 0 0 10px; */
   font-weight: bold;
 }
 .addCustomizePizzaBTN {
   color: black;
   font-weight: bold;
-  padding-left: 30px;
+  padding-left: 12px;
 }
 .addCustomizePizzaBTN:hover {
   color: rgb(126, 23, 23);
@@ -70,3 +75,41 @@
   color: rgb(126, 23, 23);
   text-decoration: underline;
 }
+/* main button animation and style */
+
+.main-add-button {
+  background: #97120d;
+  color: white;
+  border: none;
+  height: 55px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  padding: 10px 36px;
+}
+
+.main-add-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.main-add-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: -20px;
+  transition: 0.5s;
+}
+
+.main-add-button:hover span {
+  padding-left: 10px;
+}
+
+.main-add-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+/* End of main button animation and style */
