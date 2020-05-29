@@ -7,7 +7,7 @@ export default function Pizzamenu() {
   return (
     <div>
       {/* First set -4- of cards */}
-      <div className='container centerPage'>
+      <div className='container-fluid centerPage'>
         <h1 className='menuMainText'>BigAz's picks</h1>
         <div className='row'>
           <div className='col-lg-3'>
