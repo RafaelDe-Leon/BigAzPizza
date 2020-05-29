@@ -18,7 +18,6 @@
   color: white;
 }
 .menuMainText {
-  margin-top: 30px;
   color: rgb(151, 32, 32);
   font-weight: bold;
 }
@@ -26,6 +25,7 @@
   margin-top: 10px;
   font-weight: bold;
 }
+
 .pizzaMenuIMG {
   background-image: url('../../img/PizzaSpecial.jpg');
   background-size: cover;
