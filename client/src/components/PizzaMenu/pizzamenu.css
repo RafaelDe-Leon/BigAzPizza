@@ -1,6 +1,72 @@
-.TESTINGPAGE {
-  margin-top: 300px;
-  height: 1000px;
+.cardStyle {
+  margin-top: 30px;
+}
+.PizzaMenuPGImg {
+  background-image: url('../../img/2LargePizza.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   width: 100%;
-  font-size: 200px;
+  height: auto;
+  min-height: 200px;
+}
+.NYPizzaMenuPGImg {
+  background-image: url('../../img/PizzaSpecial2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+.HSPizzaMenuPGImg {
+  background-image: url('../../img/2-2-2PIZZA.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+.dropDownControls {
+  padding: 10px 26px 10px 0;
+}
+.dropDownControls2 {
+  color: black;
+}
+.dropDownControls2:hover {
+  color: rgb(126, 23, 23);
+}
+.card-textControl {
+  /* padding: 10px 0 10px 0; */
+  font-size: 12px;
+}
+.card-titleContol {
+  font-weight: bold;
+  color: rgb(126, 23, 23);
+}
+.addBTNControl {
+  margin-top: 10px;
+}
+.addPizzaBTN {
+  padding: 0 0px 0 10px;
+  font-weight: bold;
+}
+.addCustomizePizzaBTN {
+  color: black;
+  font-weight: bold;
+  padding-left: 30px;
+}
+.addCustomizePizzaBTN:hover {
+  color: rgb(126, 23, 23);
+  text-decoration: underline;
+}
+.infoMenuPizzaBTN {
+  color: black;
+  font-weight: bold;
+  padding-left: 30px;
+}
+.infoMenuPizzaBTN:hover {
+  color: rgb(126, 23, 23);
+  text-decoration: underline;
 }

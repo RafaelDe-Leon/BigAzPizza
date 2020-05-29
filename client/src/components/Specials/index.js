@@ -134,7 +134,8 @@ export default function SpecialsPG() {
                     <p className='col-md-4 container2-Text1-col2'>$6.00</p>
                   </div>
                   <div className='container2-Text2'>
-                    Any Sides (10" Cheesesticks, Breadsticks, and more!)
+                    Any Sides 10" Cheesesticks, Breadsticks, BBQ Chicken, and
+                    more!
                   </div>
                   <button className='main-button container2-Text3  '>
                     <span>Customize</span>
