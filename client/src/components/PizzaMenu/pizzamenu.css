@@ -60,7 +60,7 @@
 .addCustomizePizzaBTN {
   color: black;
   font-weight: bold;
-  padding-left: 12px;
+  /* padding-left: 12px; */
 }
 .addCustomizePizzaBTN:hover {
   color: rgb(126, 23, 23);
@@ -69,7 +69,7 @@
 .infoMenuPizzaBTN {
   color: black;
   font-weight: bold;
-  padding-left: 30px;
+  /* padding-left: 20px; */
 }
 .infoMenuPizzaBTN:hover {
   color: rgb(126, 23, 23);

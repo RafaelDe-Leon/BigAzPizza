@@ -22,7 +22,7 @@ export default function Pizzamenu() {
                     </h5>
 
                     <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      Info
+                      More Info
                     </Link>
                   </div>
                   <div className='row'>
@@ -92,7 +92,7 @@ export default function Pizzamenu() {
                     </h5>
 
                     <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      Info
+                      More Info
                     </Link>
                   </div>
                   <div className='row'>
@@ -161,7 +161,7 @@ export default function Pizzamenu() {
                     </h5>
 
                     <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      Info
+                      More Info
                     </Link>
                   </div>
                   <div className='row'>
@@ -230,7 +230,7 @@ export default function Pizzamenu() {
                     </h5>
 
                     <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      Info
+                      More Info
                     </Link>
                   </div>
                   <div className='row'>
@@ -306,7 +306,7 @@ export default function Pizzamenu() {
                     </h5>
 
                     <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      Info
+                      More Info
                     </Link>
                   </div>
                   <div className='row'>
@@ -376,7 +376,7 @@ export default function Pizzamenu() {
                     </h5>
 
                     <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      Info
+                      More Info
                     </Link>
                   </div>
                   <div className='row'>
@@ -445,7 +445,7 @@ export default function Pizzamenu() {
                     </h5>
 
                     <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      Info
+                      More Info
                     </Link>
                   </div>
                   <div className='row'>
@@ -514,7 +514,7 @@ export default function Pizzamenu() {
                     </h5>
 
                     <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      Info
+                      More Info
                     </Link>
                   </div>
                   <div className='row'>
@@ -590,7 +590,7 @@ export default function Pizzamenu() {
                     </h5>
 
                     <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      Info
+                      More Info
                     </Link>
                   </div>
                   <div className='row'>
@@ -660,7 +660,7 @@ export default function Pizzamenu() {
                     </h5>
 
                     <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      Info
+                      More Info
                     </Link>
                   </div>
                   <div className='row'>
@@ -729,7 +729,7 @@ export default function Pizzamenu() {
                     </h5>
 
                     <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      Info
+                      More Info
                     </Link>
                   </div>
                   <div className='row'>
@@ -798,7 +798,7 @@ export default function Pizzamenu() {
                     </h5>
 
                     <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      Info
+                      More Info
                     </Link>
                   </div>
                   <div className='row'>
