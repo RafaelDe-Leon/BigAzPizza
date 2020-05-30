@@ -1,1 +1,36 @@
-
+.NYPastaMenuPGImg {
+  background-image: url('../../img/pastaa.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+.PastaMenuPGImg {
+  background-image: url('../../img/pasta.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+.hsPastaMenuPGImg {
+  background-image: url('../../img/shellfish-pasta.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: auto;
+  min-height: 200px;
+}
+.infoMenuPastaBTN {
+  color: black;
+  font-weight: bold;
+  padding-left: 70px;
+}
+.infoMenuPastaBTN:hover {
+  color: rgb(126, 23, 23);
+  text-decoration: underline;
+}
