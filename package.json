@@ -29,9 +29,12 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
+    "cookies": "^0.8.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "js-cookie": "^2.2.1",
     "moment": "^2.26.0",
     "mongoose": "^5.9.15",
@@ -42,6 +45,7 @@
     "react-moment": "^0.9.7",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-stripe-elements": "^6.1.2"
+    "react-stripe-elements": "^6.1.2",
+    "session": "^0.1.0"
   }
 }
