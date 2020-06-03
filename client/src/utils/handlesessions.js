@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 // import API from './API';
 
 export const getCookie = () => {
-  const cookie = Cookies.get('userId');
+  const cookie = Cookies.get('pizzaId');
   console.log(cookie);
 };
 // export const authenticateUser = () => {

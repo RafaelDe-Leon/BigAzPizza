@@ -3,7 +3,7 @@ const router = require('express').Router();
 const PizzaCtrl = require('../../controllers/pizza-ctrl');
 
 // Post Pizza
-router.route('/pizza').post(PizzaCtrl.create);
+router.route('/').post(PizzaCtrl.create);
 // Update Pizza
 router.route('/update').put(PizzaCtrl.update);
 // Delete Pizza

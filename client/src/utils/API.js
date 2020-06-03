@@ -31,11 +31,11 @@ export default {
   // },
   // Gets all pizzas
   getPizzas: function() {
-    return axios.get('/api/pizza');
+    return axios.get('/api/pizza-router');
   },
   // Gets the pizza with the given id
   getPizza: function() {
-    return axios.get('/api/pizza/info');
+    return axios.get('/api/pizza-router/info');
   },
   updatePizza: function(pizza) {
     return axios.put('/api/pizza-router/update', pizza);

@@ -130,17 +130,8 @@ module.exports = {
         quantity: req.body.quantity,
         size: req.body.size
       };
-      db.Pizza.create(pizzaData)
-        .then(dbModel => {
-          // setting the client cookie
-          res.cookie('pizzaId', dbModel._id, {
-            expires: new Date(Date.now() + 900000),
-            httpOnly: false
-          });
-          // set the session
-          req.session.pizzaId = dbModel._id;
-          return res.json(dbModel);
-        })
+      db.Pizzas.create(pizzaData)
+        .then(dbPizza => res.json(dbPizza))
         .catch(err => res.status(422).json(err));
     }
   },
@@ -157,9 +148,9 @@ module.exports = {
   },
 
   findAllPizzas: function(req, res) {
-    db.Pizza.find()
-      .sort({ lastName: 1 })
-      .then(dbPizzas => res.json(dbPizzas))
+    db.Pizza.findOne()
+      // .sort({ lastName: 1 })
+      .then(dbPizza => res.json(dbPizza))
       .catch(err => res.status(422).json(err));
   },
 
