@@ -29,19 +29,20 @@ export default {
   // postPizza: function(pizza) {
   //   return axios.post('/api/pizza-router');
   // },
+
   // Gets all pizzas
   getPizzas: function() {
-    return axios.get('/api/pizza-router');
+    return axios.get('/api/user/findAllPizzas');
   },
   // Gets the pizza with the given id
   getPizza: function() {
-    return axios.get('/api/pizza-router/info');
+    return axios.get('/api/pizza/findPizzaById');
   },
   updatePizza: function(pizza) {
-    return axios.put('/api/pizza-router/update', pizza);
+    return axios.put('/api/user/update', pizza);
   },
   deletePizza: function(pizza) {
-    return axios.delete('/api/pizza-router/delete', pizza);
+    return axios.delete('/api/user/delete', pizza);
   }
   // loginUser: function(user) {
   //   return axios.post('/api/user/', user, xhrHeader);

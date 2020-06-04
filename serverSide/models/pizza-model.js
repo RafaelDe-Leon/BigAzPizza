@@ -9,6 +9,10 @@ const PizzaSchema = new Schema({
   size: {
     type: String,
     required: true
+  },
+  class: {
+    type: String,
+    required: true
   }
 });
 

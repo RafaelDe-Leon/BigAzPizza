@@ -26,6 +26,19 @@ var UserSchema = new mongoose.Schema({
   message: {
     type: String,
     trim: true
+  },
+  // Pizza
+  quantity: {
+    type: Number,
+    required: true
+  },
+  size: {
+    type: String,
+    required: true
+  },
+  class: {
+    type: String,
+    required: true
   }
   // password: {
   //   type: String,

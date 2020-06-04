@@ -124,11 +124,12 @@ const db = require('../models');
 module.exports = {
   create: function(req, res) {
     //validate request
-    if (req.body.quantity && req.body.size) {
+    if (req.body.quantity && req.body.size && req.body.class) {
       //create data
       const pizzaData = {
         quantity: req.body.quantity,
-        size: req.body.size
+        size: req.body.size,
+        class: req.body.class
       };
       db.Pizzas.create(pizzaData)
         .then(dbPizza => res.json(dbPizza))
@@ -141,22 +142,21 @@ module.exports = {
       .then(dbPizza => res.json(dbPizza))
       .catch(err => res.status(422).json(err));
   },
-  deletePizzaById: function(req, res) {
-    db.Pizza.remove({ _id: req.session.pizzaId })
+  delete: function(req, res) {
+    db.Pizza.remove({ _id: req.params.id })
       .then(dbPizza => res.json(dbPizza))
       .catch(err => res.status(422).json(err));
   },
 
-  findAllPizzas: function(req, res) {
-    db.Pizza.findOne()
-      // .sort({ lastName: 1 })
+  find: function(req, res) {
+    db.Pizza.findOne({ _userId: req.session.userId })
       .then(dbPizza => res.json(dbPizza))
       .catch(err => res.status(422).json(err));
   },
 
   update: function(req, res) {
     db.Pizza.updateOne(
-      { _id: req.session.pizzaId },
+      { _id: req.params.id },
       { $set: req.body },
       { new: true }
     )

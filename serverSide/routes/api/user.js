@@ -9,4 +9,7 @@ router.route('/findAllUsers').get(userController.findAllUsers);
 // Matches with '/api/user/update'
 router.route('/update').put(userController.update);
 
+// Matches with '/api/user/findAllPizzas'
+router.route('/findAllPizzas').get(userController.findAllPizzas);
+
 module.exports = router;
