@@ -32,14 +32,15 @@ export default {
 
   // Gets all pizzas
   getPizzas: function() {
-    return axios.get('/api/user/findAllPizzas');
+    return axios.get('/api/pizza/pizzas');
   },
+
   // Gets the pizza with the given id
   getPizza: function() {
-    return axios.get('/api/pizza/findPizzaById');
+    return axios.get('/api/pizza/info');
   },
   updatePizza: function(pizza) {
-    return axios.put('/api/user/update', pizza);
+    return axios.put('/api/pizza/update', pizza);
   },
   deletePizza: function(pizza) {
     return axios.delete('/api/user/delete', pizza);

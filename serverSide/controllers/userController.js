@@ -20,7 +20,7 @@ module.exports = {
         message: req.body.message
         // password: req.body.password,
       };
-      db.User.create(userData)
+      db.Users.create(userData)
         .then(dbModel => {
           // setting the client cookie
           res.cookie('userId', dbModel._id, {
@@ -56,13 +56,6 @@ module.exports = {
       { new: true }
     )
       .then(dbUser => res.json(dbUser))
-      .catch(err => res.status(422).json(err));
-  },
-
-  findAllPizzas: function(req, res) {
-    db.Pizza.find()
-      .sort({ class: 1, size: 1, quantity: 1 })
-      .then(dbPizza => res.json(dbPizza))
       .catch(err => res.status(422).json(err));
   }
 

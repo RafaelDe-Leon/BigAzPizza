@@ -1,864 +1,1009 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './pizzamenu.css';
+import PizzaInfo from '../Pizza-Info';
+
 import Dropdown from 'react-bootstrap/Dropdown';
 import { Link } from 'react-router-dom';
+import API from '../../utils/API';
+import { Input, FormBtn } from '../Form';
 
-export default function Pizzamenu() {
-  return (
-    <div>
-      {/* First set -4- of cards */}
-      <div className='container-fluid centerPage '>
-        <section className='section-Menu'>
-          <h1 className='menuMainText'>BigAz's picks</h1>
-          <div className='row'>
-            <div className='col-lg-3'>
-              {/* Card Menu 1 */}
-              <div className='card cardStyle '>
-                <div class='card-img-top PizzaMenuPGImg '></div>
-                <div className='card-body container'>
-                  <div className='row'>
-                    <h5 className='card-title card-titleContol col-auto'>
-                      Cheese Pizza
-                    </h5>
+// export default function Pizzamenu() {
+class Pizzamenu extends Component {
+  state = {
+    pizzaData: {},
+    quantity: '',
+    size: '',
+    type: ''
+  };
 
-                    <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      More Info
-                    </Link>
-                  </div>
-                  <div className='row'>
-                    {/* Size  */}
-                    <Dropdown className='dropDownControls '>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Size
-                      </Dropdown.Toggle>
+  componentDidMount() {
+    this.loadPizza();
+    API.getPizza()
+      .then(res =>
+        this.setState({
+          pizzaData: res.data
+        })
+      )
+      .catch(err => console.log(err));
+  }
 
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Medium</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* Quantity */}
-                    <Dropdown className='dropDownControls'>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Quantity
-                      </Dropdown.Toggle>
+  loadPizza = () => {
+    API.getPizza()
+      .then(res =>
+        this.setState({
+          pizzaData: res.data,
+          quantity: '',
+          size: '',
+          type: ''
+        })
+      )
+      .catch(err => console.log(err));
+  };
 
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
+  deletePizza = Pizza => {
+    API.deletePizza(Pizza)
+      .then(res => this.loadPizza())
+      .catch(err => console.log(err));
+  };
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
-                  <p className='card-text card-textControl '>
-                    270 cal/slice, 8 slices
-                  </p>
+  handleFormSubmit = event => {
+    event.preventDefault();
+    if (this.state.quantity && this.state.size && this.state.type) {
+      console.log('Attempting to add a new pizza');
+      API.updatePizza({
+        quantity: this.state.quantity,
+        size: this.state.size,
+        type: this.state.type,
+        today: Date.now
+      })
+        .then(res => {
+          console.log(res);
+          this.setState({
+            pizzaData: {
+              quantity: this.state.quantity,
+              size: this.state.size,
+              type: this.state.type
+            }
+          });
+          if (res.status === 200) {
+            console.log('Order submitted succesfully');
 
-                  <div className='row addBTNControl'>
-                    <div className='col-auto addPizzaBTN'>
-                      <Link to='/' className='main-add-button'>
-                        <span>Add</span>
+            return alert(
+              'Your selection has been submitted. To update, simply re-submit. Thank you'
+            );
+          }
+        })
+        .catch(err => console.log(err));
+    }
+  };
+
+  render() {
+    return (
+      <div>
+        {/* First set -4- of cards */}
+        <div className='container-fluid centerPage '>
+          <section className='section-Menu'>
+            <h1 className='menuMainText'>BigAz's picks</h1>
+            <div className='row'>
+              <div className='col-lg-3'>
+                {/* Card Menu 1 */}
+                <div className='card cardStyle '>
+                  <div className='card-img-top PizzaMenuPGImg '></div>
+                  <div className='card-body container'>
+                    <div className='row'>
+                      <h5 className='card-title card-titleContol col-auto'>
+                        Cheese Pizza
+                      </h5>
+
+                      <Link to='/' className='col-auto  infoMenuPizzaBTN'>
+                        More Info
                       </Link>
                     </div>
-                    <div className='col-auto '>
-                      <Link to='/' className='addCustomizePizzaBTN'>
-                        Customize
-                      </Link>
+                    <div className='row'>
+                      <Input
+                        value={this.state.size}
+                        onChange={this.handleInputChange}
+                        type='text'
+                        name='size'
+                        placeholder='Size (required)'
+                      />
+
+                      {/* Size  */}
+                      <Dropdown className='dropDownControls '>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Size
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            Medium
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {/* Quantity */}
+                      <Input
+                        value={this.state.quantity}
+                        onChange={this.handleInputChange}
+                        type='text'
+                        name='quantity'
+                        placeholder='Quantity (required)'
+                      />
+                      <Dropdown className='dropDownControls'>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Quantity
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      <Input
+                        value={this.state.type}
+                        onChange={this.handleInputChange}
+                        type='text'
+                        name='type'
+                        placeholder='Type (required)'
+                      />
                     </div>
-                  </div>
-                </div>
-              </div>
-              {/* End of Card Menu */}
-            </div>
 
-            <div className='col-lg-3'>
-              {/* Card Menu 2*/}
-              <div className='card cardStyle '>
-                <div class='card-img-top PizzaMenuPGImg '></div>
-                <div className='card-body container'>
-                  <div className='row'>
-                    <h5 className='card-title card-titleContol col-auto'>
-                      Cheese Pizza
-                    </h5>
+                    <p className='card-text card-textControl '>
+                      270 cal/slice, 8 slices
+                    </p>
 
-                    <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      More Info
-                    </Link>
-                  </div>
-                  <div className='row'>
-                    {/* Size  */}
-                    <Dropdown className='dropDownControls '>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Size
-                      </Dropdown.Toggle>
+                    <div className='row addBTNControl'>
+                      <div className='col-auto addPizzaBTN'>
+                        <FormBtn
+                          className='main-add-button'
+                          onClick={this.handleFormSubmit}
+                        >
+                          Schedule
+                        </FormBtn>
 
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Medium</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* Quantity */}
-                    <Dropdown className='dropDownControls'>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Quantity
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-
-                  <p className='card-text card-textControl '>
-                    270 cal/slice, 8 slices
-                  </p>
-
-                  <div className='row addBTNControl'>
-                    <div className='col-auto addPizzaBTN'>
-                      <Link to='/' className='main-add-button'>
-                        <span>Add</span>
-                      </Link>
-                    </div>
-                    <div className='col-auto '>
-                      <Link to='/' className='addCustomizePizzaBTN'>
-                        Customize
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* End of Card Menu */}
-            </div>
-            <div className='col-lg-3'>
-              {/* Card Menu 3*/}
-              <div className='card cardStyle '>
-                <div class='card-img-top PizzaMenuPGImg '></div>
-                <div className='card-body container'>
-                  <div className='row'>
-                    <h5 className='card-title card-titleContol col-auto'>
-                      Cheese Pizza
-                    </h5>
-
-                    <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      More Info
-                    </Link>
-                  </div>
-                  <div className='row'>
-                    {/* Size  */}
-                    <Dropdown className='dropDownControls '>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Size
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Medium</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* Quantity */}
-                    <Dropdown className='dropDownControls'>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Quantity
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-
-                  <p className='card-text card-textControl '>
-                    270 cal/slice, 8 slices
-                  </p>
-
-                  <div className='row addBTNControl'>
-                    <div className='col-auto addPizzaBTN'>
-                      <Link to='/' className='main-add-button'>
-                        <span>Add</span>
-                      </Link>
-                    </div>
-                    <div className='col-auto '>
-                      <Link to='/' className='addCustomizePizzaBTN'>
-                        Customize
-                      </Link>
+                        <Link to='/' className='main-add-button'>
+                          <span>Add</span>
+                        </Link>
+                      </div>
+                      <div className='col-auto '>
+                        <Link to='/' className='addCustomizePizzaBTN'>
+                          Customize
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              {/* End of Card Menu */}
-            </div>
-            <div className='col-lg-3'>
-              {/* Card Menu 4 */}
-              <div className='card cardStyle '>
-                <div class='card-img-top PizzaMenuPGImg '></div>
-                <div className='card-body container'>
-                  <div className='row'>
-                    <h5 className='card-title card-titleContol col-auto'>
-                      Cheese Pizza
-                    </h5>
-
-                    <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      More Info
-                    </Link>
-                  </div>
-                  <div className='row'>
-                    {/* Size  */}
-                    <Dropdown className='dropDownControls '>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Size
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Medium</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* Quantity */}
-                    <Dropdown className='dropDownControls'>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Quantity
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-
-                  <p className='card-text card-textControl '>
-                    270 cal/slice, 8 slices
+                <div>
+                  <p>
+                    You selection:
+                    <PizzaInfo
+                      quantity={this.state.pizzaData.quantity}
+                      size={this.state.pizzaData.size}
+                      type={this.state.pizzaData.type}
+                    />{' '}
                   </p>
+                </div>
+                {/* End of Card Menu */}
+              </div>
 
-                  <div className='row addBTNControl'>
-                    <div className='col-auto addPizzaBTN'>
-                      <Link to='/' className='main-add-button'>
-                        <span>Add</span>
+              <div className='col-lg-3'>
+                {/* Card Menu 2*/}
+                <div className='card cardStyle '>
+                  <div className='card-img-top PizzaMenuPGImg '></div>
+                  <div className='card-body container'>
+                    <div className='row'>
+                      <h5 className='card-title card-titleContol col-auto'>
+                        Cheese Pizza
+                      </h5>
+
+                      <Link to='/' className='col-auto  infoMenuPizzaBTN'>
+                        More Info
                       </Link>
                     </div>
-                    <div className='col-auto '>
-                      <Link to='/' className='addCustomizePizzaBTN'>
-                        Customize
-                      </Link>
+                    <div className='row'>
+                      {/* Size  */}
+                      <Dropdown className='dropDownControls '>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Size
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            Medium
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {/* Quantity */}
+                      <Dropdown className='dropDownControls'>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Quantity
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+
+                    <p className='card-text card-textControl '>
+                      270 cal/slice, 8 slices
+                    </p>
+
+                    <div className='row addBTNControl'>
+                      <div className='col-auto addPizzaBTN'>
+                        <Link to='/' className='main-add-button'>
+                          <span>Add</span>
+                        </Link>
+                      </div>
+                      <div className='col-auto '>
+                        <Link to='/' className='addCustomizePizzaBTN'>
+                          Customize
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
+                {/* End of Card Menu */}
               </div>
-              {/* End of Card Menu */}
-            </div>
-          </div>
-        </section>
+              <div className='col-lg-3'>
+                {/* Card Menu 3*/}
+                <div className='card cardStyle '>
+                  <div className='card-img-top PizzaMenuPGImg '></div>
+                  <div className='card-body container'>
+                    <div className='row'>
+                      <h5 className='card-title card-titleContol col-auto'>
+                        Cheese Pizza
+                      </h5>
 
-        {/* Second set -4- of cards */}
-        <section className='section-Menu'>
-          <h1 className='menuMainText'>Handcrafted Specialties</h1>
-          <div className='row'>
-            <div className='col-lg-3'>
-              {/* Card Menu 1 */}
-              <div className='card cardStyle '>
-                <div class='card-img-top HSPizzaMenuPGImg '></div>
-                <div className='card-body container'>
-                  <div className='row'>
-                    <h5 className='card-title card-titleContol col-auto'>
-                      Cheese Pizza
-                    </h5>
-
-                    <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      More Info
-                    </Link>
-                  </div>
-                  <div className='row'>
-                    {/* Size  */}
-                    <Dropdown className='dropDownControls '>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Size
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Medium</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* Quantity */}
-                    <Dropdown className='dropDownControls'>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Quantity
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-
-                  <p className='card-text card-textControl '>
-                    270 cal/slice, 8 slices
-                  </p>
-
-                  <div className='row addBTNControl'>
-                    <div className='col-auto addPizzaBTN'>
-                      <Link to='/' className='main-add-button'>
-                        <span>Add</span>
+                      <Link to='/' className='col-auto  infoMenuPizzaBTN'>
+                        More Info
                       </Link>
                     </div>
-                    <div className='col-auto '>
-                      <Link to='/' className='addCustomizePizzaBTN'>
-                        Customize
-                      </Link>
+                    <div className='row'>
+                      {/* Size  */}
+                      <Dropdown className='dropDownControls '>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Size
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            Medium
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {/* Quantity */}
+                      <Dropdown className='dropDownControls'>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Quantity
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+
+                    <p className='card-text card-textControl '>
+                      270 cal/slice, 8 slices
+                    </p>
+
+                    <div className='row addBTNControl'>
+                      <div className='col-auto addPizzaBTN'>
+                        <Link to='/' className='main-add-button'>
+                          <span>Add</span>
+                        </Link>
+                      </div>
+                      <div className='col-auto '>
+                        <Link to='/' className='addCustomizePizzaBTN'>
+                          Customize
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
+                {/* End of Card Menu */}
               </div>
-              {/* End of Card Menu */}
-            </div>
+              <div className='col-lg-3'>
+                {/* Card Menu 4 */}
+                <div className='card cardStyle '>
+                  <div className='card-img-top PizzaMenuPGImg '></div>
+                  <div className='card-body container'>
+                    <div className='row'>
+                      <h5 className='card-title card-titleContol col-auto'>
+                        Cheese Pizza
+                      </h5>
 
-            <div className='col-lg-3'>
-              {/* Card Menu 2*/}
-              <div className='card cardStyle '>
-                <div class='card-img-top HSPizzaMenuPGImg '></div>
-                <div className='card-body container'>
-                  <div className='row'>
-                    <h5 className='card-title card-titleContol col-auto'>
-                      Cheese Pizza
-                    </h5>
-
-                    <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      More Info
-                    </Link>
-                  </div>
-                  <div className='row'>
-                    {/* Size  */}
-                    <Dropdown className='dropDownControls '>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Size
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Medium</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* Quantity */}
-                    <Dropdown className='dropDownControls'>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Quantity
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-
-                  <p className='card-text card-textControl '>
-                    270 cal/slice, 8 slices
-                  </p>
-
-                  <div className='row addBTNControl'>
-                    <div className='col-auto addPizzaBTN'>
-                      <Link to='/' className='main-add-button'>
-                        <span>Add</span>
+                      <Link to='/' className='col-auto  infoMenuPizzaBTN'>
+                        More Info
                       </Link>
                     </div>
-                    <div className='col-auto '>
-                      <Link to='/' className='addCustomizePizzaBTN'>
-                        Customize
-                      </Link>
+                    <div className='row'>
+                      {/* Size  */}
+                      <Dropdown className='dropDownControls '>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Size
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            Medium
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {/* Quantity */}
+                      <Dropdown className='dropDownControls'>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Quantity
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+
+                    <p className='card-text card-textControl '>
+                      270 cal/slice, 8 slices
+                    </p>
+
+                    <div className='row addBTNControl'>
+                      <div className='col-auto addPizzaBTN'>
+                        <Link to='/' className='main-add-button'>
+                          <span>Add</span>
+                        </Link>
+                      </div>
+                      <div className='col-auto '>
+                        <Link to='/' className='addCustomizePizzaBTN'>
+                          Customize
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
+                {/* End of Card Menu */}
               </div>
-              {/* End of Card Menu */}
             </div>
-            <div className='col-lg-3'>
-              {/* Card Menu 3*/}
-              <div className='card cardStyle '>
-                <div class='card-img-top HSPizzaMenuPGImg '></div>
-                <div className='card-body container'>
-                  <div className='row'>
-                    <h5 className='card-title card-titleContol col-auto'>
-                      Cheese Pizza
-                    </h5>
+          </section>
 
-                    <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      More Info
-                    </Link>
-                  </div>
-                  <div className='row'>
-                    {/* Size  */}
-                    <Dropdown className='dropDownControls '>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Size
-                      </Dropdown.Toggle>
+          {/* Second set -4- of cards */}
+          <section className='section-Menu'>
+            <h1 className='menuMainText'>Handcrafted Specialties</h1>
+            <div className='row'>
+              <div className='col-lg-3'>
+                {/* Card Menu 1 */}
+                <div className='card cardStyle '>
+                  <div className='card-img-top HSPizzaMenuPGImg '></div>
+                  <div className='card-body container'>
+                    <div className='row'>
+                      <h5 className='card-title card-titleContol col-auto'>
+                        Cheese Pizza
+                      </h5>
 
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Medium</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* Quantity */}
-                    <Dropdown className='dropDownControls'>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Quantity
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-
-                  <p className='card-text card-textControl '>
-                    270 cal/slice, 8 slices
-                  </p>
-
-                  <div className='row addBTNControl'>
-                    <div className='col-auto addPizzaBTN'>
-                      <Link to='/' className='main-add-button'>
-                        <span>Add</span>
+                      <Link to='/' className='col-auto  infoMenuPizzaBTN'>
+                        More Info
                       </Link>
                     </div>
-                    <div className='col-auto '>
-                      <Link to='/' className='addCustomizePizzaBTN'>
-                        Customize
-                      </Link>
+                    <div className='row'>
+                      {/* Size  */}
+                      <Dropdown className='dropDownControls '>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Size
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            Medium
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {/* Quantity */}
+                      <Dropdown className='dropDownControls'>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Quantity
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+
+                    <p className='card-text card-textControl '>
+                      270 cal/slice, 8 slices
+                    </p>
+
+                    <div className='row addBTNControl'>
+                      <div className='col-auto addPizzaBTN'>
+                        <Link to='/' className='main-add-button'>
+                          <span>Add</span>
+                        </Link>
+                      </div>
+                      <div className='col-auto '>
+                        <Link to='/' className='addCustomizePizzaBTN'>
+                          Customize
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
+                {/* End of Card Menu */}
               </div>
-              {/* End of Card Menu */}
-            </div>
-            <div className='col-lg-3'>
-              {/* Card Menu 4 */}
-              <div className='card cardStyle '>
-                <div class='card-img-top HSPizzaMenuPGImg '></div>
-                <div className='card-body container'>
-                  <div className='row'>
-                    <h5 className='card-title card-titleContol col-auto'>
-                      Cheese Pizza
-                    </h5>
 
-                    <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      More Info
-                    </Link>
-                  </div>
-                  <div className='row'>
-                    {/* Size  */}
-                    <Dropdown className='dropDownControls '>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Size
-                      </Dropdown.Toggle>
+              <div className='col-lg-3'>
+                {/* Card Menu 2*/}
+                <div className='card cardStyle '>
+                  <div className='card-img-top HSPizzaMenuPGImg '></div>
+                  <div className='card-body container'>
+                    <div className='row'>
+                      <h5 className='card-title card-titleContol col-auto'>
+                        Cheese Pizza
+                      </h5>
 
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Medium</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* Quantity */}
-                    <Dropdown className='dropDownControls'>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Quantity
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-
-                  <p className='card-text card-textControl '>
-                    270 cal/slice, 8 slices
-                  </p>
-
-                  <div className='row addBTNControl'>
-                    <div className='col-auto addPizzaBTN'>
-                      <Link to='/' className='main-add-button'>
-                        <span>Add</span>
+                      <Link to='/' className='col-auto  infoMenuPizzaBTN'>
+                        More Info
                       </Link>
                     </div>
-                    <div className='col-auto '>
-                      <Link to='/' className='addCustomizePizzaBTN'>
-                        Customize
-                      </Link>
+                    <div className='row'>
+                      {/* Size  */}
+                      <Dropdown className='dropDownControls '>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Size
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            Medium
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {/* Quantity */}
+                      <Dropdown className='dropDownControls'>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Quantity
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+
+                    <p className='card-text card-textControl '>
+                      270 cal/slice, 8 slices
+                    </p>
+
+                    <div className='row addBTNControl'>
+                      <div className='col-auto addPizzaBTN'>
+                        <Link to='/' className='main-add-button'>
+                          <span>Add</span>
+                        </Link>
+                      </div>
+                      <div className='col-auto '>
+                        <Link to='/' className='addCustomizePizzaBTN'>
+                          Customize
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
+                {/* End of Card Menu */}
               </div>
-              {/* End of Card Menu */}
-            </div>
-          </div>
-        </section>
+              <div className='col-lg-3'>
+                {/* Card Menu 3*/}
+                <div className='card cardStyle '>
+                  <div className='card-img-top HSPizzaMenuPGImg '></div>
+                  <div className='card-body container'>
+                    <div className='row'>
+                      <h5 className='card-title card-titleContol col-auto'>
+                        Cheese Pizza
+                      </h5>
 
-        {/* Third set -4- of cards */}
-        <section className='section-Menu'>
-          <h1 className='menuMainText'>New York's Favorites</h1>
-          <div className='row'>
-            <div className='col-lg-3'>
-              {/* Card Menu 1 */}
-              <div className='card cardStyle '>
-                <div class='card-img-top NYPizzaMenuPGImg '></div>
-                <div className='card-body container'>
-                  <div className='row'>
-                    <h5 className='card-title card-titleContol col-auto'>
-                      Cheese Pizza
-                    </h5>
-
-                    <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      More Info
-                    </Link>
-                  </div>
-                  <div className='row'>
-                    {/* Size  */}
-                    <Dropdown className='dropDownControls '>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Size
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Medium</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* Quantity */}
-                    <Dropdown className='dropDownControls'>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Quantity
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-
-                  <p className='card-text card-textControl '>
-                    270 cal/slice, 8 slices
-                  </p>
-
-                  <div className='row addBTNControl'>
-                    <div className='col-auto addPizzaBTN'>
-                      <Link to='/' className='main-add-button'>
-                        <span>Add</span>
+                      <Link to='/' className='col-auto  infoMenuPizzaBTN'>
+                        More Info
                       </Link>
                     </div>
-                    <div className='col-auto '>
-                      <Link to='/' className='addCustomizePizzaBTN'>
-                        Customize
-                      </Link>
+                    <div className='row'>
+                      {/* Size  */}
+                      <Dropdown className='dropDownControls '>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Size
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            Medium
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {/* Quantity */}
+                      <Dropdown className='dropDownControls'>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Quantity
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+
+                    <p className='card-text card-textControl '>
+                      270 cal/slice, 8 slices
+                    </p>
+
+                    <div className='row addBTNControl'>
+                      <div className='col-auto addPizzaBTN'>
+                        <Link to='/' className='main-add-button'>
+                          <span>Add</span>
+                        </Link>
+                      </div>
+                      <div className='col-auto '>
+                        <Link to='/' className='addCustomizePizzaBTN'>
+                          Customize
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
+                {/* End of Card Menu */}
               </div>
-              {/* End of Card Menu */}
-            </div>
+              <div className='col-lg-3'>
+                {/* Card Menu 4 */}
+                <div className='card cardStyle '>
+                  <div className='card-img-top HSPizzaMenuPGImg '></div>
+                  <div className='card-body container'>
+                    <div className='row'>
+                      <h5 className='card-title card-titleContol col-auto'>
+                        Cheese Pizza
+                      </h5>
 
-            <div className='col-lg-3'>
-              {/* Card Menu 2*/}
-              <div className='card cardStyle '>
-                <div class='card-img-top NYPizzaMenuPGImg '></div>
-                <div className='card-body container'>
-                  <div className='row'>
-                    <h5 className='card-title card-titleContol col-auto'>
-                      Cheese Pizza
-                    </h5>
-
-                    <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      More Info
-                    </Link>
-                  </div>
-                  <div className='row'>
-                    {/* Size  */}
-                    <Dropdown className='dropDownControls '>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Size
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Medium</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* Quantity */}
-                    <Dropdown className='dropDownControls'>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Quantity
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-
-                  <p className='card-text card-textControl '>
-                    270 cal/slice, 8 slices
-                  </p>
-
-                  <div className='row addBTNControl'>
-                    <div className='col-auto addPizzaBTN'>
-                      <Link to='/' className='main-add-button'>
-                        <span>Add</span>
+                      <Link to='/' className='col-auto  infoMenuPizzaBTN'>
+                        More Info
                       </Link>
                     </div>
-                    <div className='col-auto '>
-                      <Link to='/' className='addCustomizePizzaBTN'>
-                        Customize
-                      </Link>
+                    <div className='row'>
+                      {/* Size  */}
+                      <Dropdown className='dropDownControls '>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Size
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            Medium
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {/* Quantity */}
+                      <Dropdown className='dropDownControls'>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Quantity
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+
+                    <p className='card-text card-textControl '>
+                      270 cal/slice, 8 slices
+                    </p>
+
+                    <div className='row addBTNControl'>
+                      <div className='col-auto addPizzaBTN'>
+                        <Link to='/' className='main-add-button'>
+                          <span>Add</span>
+                        </Link>
+                      </div>
+                      <div className='col-auto '>
+                        <Link to='/' className='addCustomizePizzaBTN'>
+                          Customize
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
+                {/* End of Card Menu */}
               </div>
-              {/* End of Card Menu */}
             </div>
-            <div className='col-lg-3'>
-              {/* Card Menu 3*/}
-              <div className='card cardStyle '>
-                <div class='card-img-top NYPizzaMenuPGImg '></div>
-                <div className='card-body container'>
-                  <div className='row'>
-                    <h5 className='card-title card-titleContol col-auto'>
-                      Cheese Pizza
-                    </h5>
+          </section>
 
-                    <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      More Info
-                    </Link>
-                  </div>
-                  <div className='row'>
-                    {/* Size  */}
-                    <Dropdown className='dropDownControls '>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Size
-                      </Dropdown.Toggle>
+          {/* Third set -4- of cards */}
+          <section className='section-Menu'>
+            <h1 className='menuMainText'>New York's Favorites</h1>
+            <div className='row'>
+              <div className='col-lg-3'>
+                {/* Card Menu 1 */}
+                <div className='card cardStyle '>
+                  <div className='card-img-top NYPizzaMenuPGImg '></div>
+                  <div className='card-body container'>
+                    <div className='row'>
+                      <h5 className='card-title card-titleContol col-auto'>
+                        Cheese Pizza
+                      </h5>
 
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Medium</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* Quantity */}
-                    <Dropdown className='dropDownControls'>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Quantity
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-
-                  <p className='card-text card-textControl '>
-                    270 cal/slice, 8 slices
-                  </p>
-
-                  <div className='row addBTNControl'>
-                    <div className='col-auto addPizzaBTN'>
-                      <Link to='/' className='main-add-button'>
-                        <span>Add</span>
+                      <Link to='/' className='col-auto  infoMenuPizzaBTN'>
+                        More Info
                       </Link>
                     </div>
-                    <div className='col-auto '>
-                      <Link to='/' className='addCustomizePizzaBTN'>
-                        Customize
-                      </Link>
+                    <div className='row'>
+                      {/* Size  */}
+                      <Dropdown className='dropDownControls '>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Size
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            Medium
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {/* Quantity */}
+                      <Dropdown className='dropDownControls'>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Quantity
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+
+                    <p className='card-text card-textControl '>
+                      270 cal/slice, 8 slices
+                    </p>
+
+                    <div className='row addBTNControl'>
+                      <div className='col-auto addPizzaBTN'>
+                        <Link to='/' className='main-add-button'>
+                          <span>Add</span>
+                        </Link>
+                      </div>
+                      <div className='col-auto '>
+                        <Link to='/' className='addCustomizePizzaBTN'>
+                          Customize
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
+                {/* End of Card Menu */}
               </div>
-              {/* End of Card Menu */}
-            </div>
-            <div className='col-lg-3'>
-              {/* Card Menu 4 */}
-              <div className='card cardStyle '>
-                <div class='card-img-top NYPizzaMenuPGImg '></div>
-                <div className='card-body container'>
-                  <div className='row'>
-                    <h5 className='card-title card-titleContol col-auto'>
-                      Cheese Pizza
-                    </h5>
 
-                    <Link to='/' className='col-auto  infoMenuPizzaBTN'>
-                      More Info
-                    </Link>
-                  </div>
-                  <div className='row'>
-                    {/* Size  */}
-                    <Dropdown className='dropDownControls '>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Size
-                      </Dropdown.Toggle>
+              <div className='col-lg-3'>
+                {/* Card Menu 2*/}
+                <div className='card cardStyle '>
+                  <div className='card-img-top NYPizzaMenuPGImg '></div>
+                  <div className='card-body container'>
+                    <div className='row'>
+                      <h5 className='card-title card-titleContol col-auto'>
+                        Cheese Pizza
+                      </h5>
 
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>Medium</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                    {/* Quantity */}
-                    <Dropdown className='dropDownControls'>
-                      <Dropdown.Toggle
-                        className='dropDownControls2'
-                        variant=''
-                        id='dropdown-basic'
-                      >
-                        Quantity
-                      </Dropdown.Toggle>
-
-                      <Dropdown.Menu>
-                        <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
-                        <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
-                        <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </div>
-
-                  <p className='card-text card-textControl '>
-                    270 cal/slice, 8 slices
-                  </p>
-
-                  <div className='row addBTNControl'>
-                    <div className='col-auto addPizzaBTN'>
-                      <Link to='/' className='main-add-button'>
-                        <span>Add</span>
+                      <Link to='/' className='col-auto  infoMenuPizzaBTN'>
+                        More Info
                       </Link>
                     </div>
-                    <div className='col-auto '>
-                      <Link to='/' className='addCustomizePizzaBTN'>
-                        Customize
-                      </Link>
+                    <div className='row'>
+                      {/* Size  */}
+                      <Dropdown className='dropDownControls '>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Size
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            Medium
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {/* Quantity */}
+                      <Dropdown className='dropDownControls'>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Quantity
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+
+                    <p className='card-text card-textControl '>
+                      270 cal/slice, 8 slices
+                    </p>
+
+                    <div className='row addBTNControl'>
+                      <div className='col-auto addPizzaBTN'>
+                        <Link to='/' className='main-add-button'>
+                          <span>Add</span>
+                        </Link>
+                      </div>
+                      <div className='col-auto '>
+                        <Link to='/' className='addCustomizePizzaBTN'>
+                          Customize
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
+                {/* End of Card Menu */}
               </div>
-              {/* End of Card Menu */}
+              <div className='col-lg-3'>
+                {/* Card Menu 3*/}
+                <div className='card cardStyle '>
+                  <div className='card-img-top NYPizzaMenuPGImg '></div>
+                  <div className='card-body container'>
+                    <div className='row'>
+                      <h5 className='card-title card-titleContol col-auto'>
+                        Cheese Pizza
+                      </h5>
+
+                      <Link to='/' className='col-auto  infoMenuPizzaBTN'>
+                        More Info
+                      </Link>
+                    </div>
+                    <div className='row'>
+                      {/* Size  */}
+                      <Dropdown className='dropDownControls '>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Size
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            Medium
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {/* Quantity */}
+                      <Dropdown className='dropDownControls'>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Quantity
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+
+                    <p className='card-text card-textControl '>
+                      270 cal/slice, 8 slices
+                    </p>
+
+                    <div className='row addBTNControl'>
+                      <div className='col-auto addPizzaBTN'>
+                        <Link to='/' className='main-add-button'>
+                          <span>Add</span>
+                        </Link>
+                      </div>
+                      <div className='col-auto '>
+                        <Link to='/' className='addCustomizePizzaBTN'>
+                          Customize
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* End of Card Menu */}
+              </div>
+              <div className='col-lg-3'>
+                {/* Card Menu 4 */}
+                <div className='card cardStyle '>
+                  <div className='card-img-top NYPizzaMenuPGImg '></div>
+                  <div className='card-body container'>
+                    <div className='row'>
+                      <h5 className='card-title card-titleContol col-auto'>
+                        Cheese Pizza
+                      </h5>
+
+                      <Link to='/' className='col-auto  infoMenuPizzaBTN'>
+                        More Info
+                      </Link>
+                    </div>
+                    <div className='row'>
+                      {/* Size  */}
+                      <Dropdown className='dropDownControls '>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Size
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>Small</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>
+                            Medium
+                          </Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                      {/* Quantity */}
+                      <Dropdown className='dropDownControls'>
+                        <Dropdown.Toggle
+                          className='dropDownControls2'
+                          variant=''
+                          id='dropdown-basic'
+                        >
+                          Quantity
+                        </Dropdown.Toggle>
+
+                        <Dropdown.Menu>
+                          <Dropdown.Item href='#/action-1'>1</Dropdown.Item>
+                          <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
+                          <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </div>
+
+                    <p className='card-text card-textControl '>
+                      270 cal/slice, 8 slices
+                    </p>
+
+                    <div className='row addBTNControl'>
+                      <div className='col-auto addPizzaBTN'>
+                        <Link to='/' className='main-add-button'>
+                          <span>Add</span>
+                        </Link>
+                      </div>
+                      <div className='col-auto '>
+                        <Link to='/' className='addCustomizePizzaBTN'>
+                          Customize
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* End of Card Menu */}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+export default Pizzamenu;

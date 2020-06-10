@@ -124,24 +124,34 @@ const db = require('../models');
 module.exports = {
   create: function(req, res) {
     //validate request
-    if (req.body.quantity && req.body.size && req.body.class) {
+    if (req.body.quantity && req.body.size && req.body.type) {
       //create data
       const pizzaData = {
         quantity: req.body.quantity,
         size: req.body.size,
-        class: req.body.class
+        type: req.body.type
       };
-      db.Pizzas.create(pizzaData)
-        .then(dbPizza => res.json(dbPizza))
+      db.Pizza.create(pizzaData)
+        .then(dbPizza => {
+          // setting the client cookie
+          res.cookie('pizzaId', dbPizza._id, {
+            expires: new Date(Date.now() + 900000),
+            httpOnly: false
+          });
+          // set the session
+          req.session.pizzaId = dbPizza._id;
+          return res.json(dbPizza);
+        })
         .catch(err => res.status(422).json(err));
     }
   },
 
-  findPizzaById: function(req, res) {
-    db.Pizza.findById({ _id: req.session.pizzaId })
-      .then(dbPizza => res.json(dbPizza))
-      .catch(err => res.status(422).json(err));
-  },
+  // findPizzaById: function(req, res) {
+  //   db.Pizza.findById({ _id: req.session.pizzaId })
+  //     .then(dbPizza => res.json(dbPizza))
+  //     .catch(err => res.status(422).json(err));
+  // },
+
   delete: function(req, res) {
     db.Pizza.remove({ _id: req.params.id })
       .then(dbPizza => res.json(dbPizza))
@@ -149,7 +159,7 @@ module.exports = {
   },
 
   find: function(req, res) {
-    db.Pizza.findOne({ _userId: req.session.userId })
+    db.Pizza.findOne({ _pizzaId: req.session.pizzaId })
       .then(dbPizza => res.json(dbPizza))
       .catch(err => res.status(422).json(err));
   },
@@ -160,6 +170,12 @@ module.exports = {
       { $set: req.body },
       { new: true }
     )
+      .then(dbPizza => res.json(dbPizza))
+      .catch(err => res.status(422).json(err));
+  },
+  findAllPizzas: function(req, res) {
+    db.Pizza.find()
+      .sort({ type: 1, size: 1, quantity: 1 })
       .then(dbPizza => res.json(dbPizza))
       .catch(err => res.status(422).json(err));
   }

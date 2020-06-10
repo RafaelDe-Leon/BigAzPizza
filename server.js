@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
 
 const app = express();
 // const apiPort = 3001;
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3009;
 //use sessions for tracking logins
 app.use(session({ secret: 'keyboard cat', cookie: {} }));
 
@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'production') {
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // connect to mongo db
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/mern-auth');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/BigAzPizza');
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
