@@ -11,7 +11,7 @@ import axios from 'axios';
 export default {
   // Gets all users
   getUsers: function() {
-    return axios.get('/api/user');
+    return axios.get('/api/user/Users');
   },
   // Gets the users with the given id
   getUser: function() {

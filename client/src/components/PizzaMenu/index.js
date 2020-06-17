@@ -13,7 +13,7 @@ class Pizzamenu extends Component {
     pizzaData: {},
     quantity: '',
     size: '',
-    type: ''
+    type: 'pizza'
   };
 
   componentDidMount() {
@@ -33,8 +33,7 @@ class Pizzamenu extends Component {
         this.setState({
           pizzaData: res.data,
           quantity: '',
-          size: '',
-          type: ''
+          size: ''
         })
       )
       .catch(err => console.log(err));
@@ -59,7 +58,6 @@ class Pizzamenu extends Component {
       API.updatePizza({
         quantity: this.state.quantity,
         size: this.state.size,
-        type: this.state.type,
         today: Date.now
       })
         .then(res => {
@@ -106,16 +104,27 @@ class Pizzamenu extends Component {
                       </Link>
                     </div>
                     <div className='row'>
-                      <Input
-                        value={this.state.size}
-                        onChange={this.handleInputChange}
-                        type='text'
-                        name='size'
-                        placeholder='Size (required)'
-                      />
+                      <form>
+                        {/* <Input
+                          value={this.state.size}
+                          onChange={this.handleInputChange}
+                          name='size'
+                          placeholder='Size (required)'
+                        /> */}
+                        <select
+                          className='selectOptions'
+                          value={this.state.size}
+                          onChange={this.handleInputChange}
+                          name='size'
+                        >
+                          <option selected>Size</option>
+                          <option name='size'>Small</option>
+                          <option name='size'>Medium</option>
+                          <option name='size'>Large</option>
+                        </select>
 
-                      {/* Size  */}
-                      <Dropdown className='dropDownControls '>
+                        {/* Size  */}
+                        {/* <Dropdown className='dropDownControls '>
                         <Dropdown.Toggle
                           className='dropDownControls2'
                           variant=''
@@ -131,16 +140,28 @@ class Pizzamenu extends Component {
                           </Dropdown.Item>
                           <Dropdown.Item href='#/action-3'>Large</Dropdown.Item>
                         </Dropdown.Menu>
-                      </Dropdown>
-                      {/* Quantity */}
-                      <Input
-                        value={this.state.quantity}
-                        onChange={this.handleInputChange}
-                        type='text'
-                        name='quantity'
-                        placeholder='Quantity (required)'
-                      />
-                      <Dropdown className='dropDownControls'>
+                      </Dropdown> */}
+                        {/* Quantity */}
+
+                        {/* <Input
+                          value={this.state.quantity}
+                          onChange={this.handleInputChange}
+                          name='quantity'
+                          placeholder='Quantity (required)'
+                        /> */}
+                        <select
+                          className='selectOptions'
+                          value={this.state.quantity}
+                          onChange={this.handleInputChange}
+                          name='quantity'
+                        >
+                          <option selected>Quantity</option>
+                          <option name='quantity'>1</option>
+                          <option name='quantity'>2</option>
+                          <option name='quantity'>3</option>
+                        </select>
+
+                        {/* <Dropdown className='dropDownControls'>
                         <Dropdown.Toggle
                           className='dropDownControls2'
                           variant=''
@@ -154,14 +175,27 @@ class Pizzamenu extends Component {
                           <Dropdown.Item href='#/action-2'>2</Dropdown.Item>
                           <Dropdown.Item href='#/action-3'>3</Dropdown.Item>
                         </Dropdown.Menu>
-                      </Dropdown>
-                      <Input
-                        value={this.state.type}
-                        onChange={this.handleInputChange}
-                        type='text'
-                        name='type'
-                        placeholder='Type (required)'
-                      />
+                      </Dropdown> */}
+
+                        {/* <Input
+                          value={this.state.type}
+                          onChange={this.handleInputChange}
+                          name='type'
+                          placeholder='Type (required)'
+                        /> */}
+                        {/* <select
+                          value={this.state.type}
+                          onChange={this.handleInputChange}
+                          name='type'
+                        >
+                          <option selected disabled>
+                            Type
+                          </option>
+                          <option name='type'>Pizza</option>
+                          <option name='type'>Sides</option>
+                          <option name='type'>Pasta</option>
+                        </select> */}
+                      </form>
                     </div>
 
                     <p className='card-text card-textControl '>
@@ -170,14 +204,10 @@ class Pizzamenu extends Component {
 
                     <div className='row addBTNControl'>
                       <div className='col-auto addPizzaBTN'>
-                        <FormBtn
-                          className='main-add-button'
+                        <Link
+                          className='main-add-button  '
                           onClick={this.handleFormSubmit}
                         >
-                          Schedule
-                        </FormBtn>
-
-                        <Link to='/' className='main-add-button'>
                           <span>Add</span>
                         </Link>
                       </div>

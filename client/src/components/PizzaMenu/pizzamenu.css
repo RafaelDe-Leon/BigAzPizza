@@ -113,3 +113,15 @@
   right: 0;
 }
 /* End of main button animation and style */
+.selectOptions {
+  background: transparent;
+  border: transparent;
+  margin: 20px 26px 20px 10px;
+  font-weight: bold;
+  font-size: 12px;
+}
+.selectOptions:hover {
+  border-bottom: 2px solid lightgray;
+  color: rgb(126, 23, 23);
+  opacity: 0.8;
+}

@@ -5,7 +5,7 @@ const userController = require('../../controllers/userController');
 router.route('/info').get(userController.findUserById);
 
 // Matches with '/api/user/findAllUsers'
-router.route('/findAllUsers').get(userController.findAllUsers);
+router.route('/Users').get(userController.findAllUsers);
 // Matches with '/api/user/update'
 router.route('/update').put(userController.update);
 

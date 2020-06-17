@@ -19,5 +19,9 @@ export function TextArea(props) {
 }
 
 export function FormBtn(props) {
-  return <button {...props}>{props.children}</button>;
+  return (
+    <button className='main-button' {...props}>
+      {props.children}
+    </button>
+  );
 }
