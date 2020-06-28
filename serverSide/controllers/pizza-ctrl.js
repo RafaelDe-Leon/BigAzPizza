@@ -122,35 +122,38 @@ const db = require('../models');
 
 // Defining methods for the pizzaController
 module.exports = {
-  create: function(req, res) {
+  createPizza: function(req, res) {
+    // const body = req.body;
     //validate request
-    if (req.body.quantity && req.body.size && req.body.type) {
+    if (req.body.quantity && req.body.size && req.body.classification) {
       //create data
       const pizzaData = {
         quantity: req.body.quantity,
         size: req.body.size,
-        type: req.body.type
+        classification: req.body.classification
       };
       db.Pizza.create(pizzaData)
-        .then(dbPizza => {
-          // setting the client cookie
-          res.cookie('pizzaId', dbPizza._id, {
-            expires: new Date(Date.now() + 900000),
-            httpOnly: false
-          });
-          // set the session
-          req.session.pizzaId = dbPizza._id;
-          return res.json(dbPizza);
-        })
+        .then(dbPizza => res.json(dbPizza))
         .catch(err => res.status(422).json(err));
+      //       .then(dbPizza => {
+      //         // setting the client cookie
+      //         res.cookie('pizzaId', dbPizza._id, {
+      //           expires: new Date(Date.now() + 900000),
+      //           httpOnly: false
+      //         });
+      //         // set the session
+      //         req.session.pizzaId = dbPizza._id;
+      //         return res.json(dbPizza);
+      //       })
+      //       .catch(err => res.status(422).json(err));
     }
   },
 
-  // findPizzaById: function(req, res) {
-  //   db.Pizza.findById({ _id: req.session.pizzaId })
-  //     .then(dbPizza => res.json(dbPizza))
-  //     .catch(err => res.status(422).json(err));
-  // },
+  findPizzaById: function(req, res) {
+    db.Pizza.findById(req.params.id)
+      .then(dbPizza => res.json(dbPizza))
+      .catch(err => res.status(422).json(err));
+  },
 
   delete: function(req, res) {
     db.Pizza.remove({ _id: req.params.id })
@@ -158,11 +161,11 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
 
-  find: function(req, res) {
-    db.Pizza.findOne({ _pizzaId: req.session.pizzaId })
-      .then(dbPizza => res.json(dbPizza))
-      .catch(err => res.status(422).json(err));
-  },
+  // find: function(req, res) {
+  //   db.Pizza.findOne({ _pizzaId: req.session.pizzaId })
+  //     .then(dbPizza => res.json(dbPizza))
+  //     .catch(err => res.status(422).json(err));
+  // },
 
   update: function(req, res) {
     db.Pizza.updateOne(
@@ -175,7 +178,7 @@ module.exports = {
   },
   findAllPizzas: function(req, res) {
     db.Pizza.find()
-      .sort({ type: 1, size: 1, quantity: 1 })
+      .sort({ classification: 1, size: 1, quantity: 1 })
       .then(dbPizza => res.json(dbPizza))
       .catch(err => res.status(422).json(err));
   }

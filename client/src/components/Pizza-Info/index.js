@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Col, Row, Container } from '../Grid';
 
-export default function PizzaInfo({ quantity, size, type }) {
+export default function PizzaInfo({ quantity, size, classification }) {
   return (
     <div>
       <Container fluid>
@@ -20,7 +20,7 @@ export default function PizzaInfo({ quantity, size, type }) {
                       </th>
                       <th scope='row'>
                         Type:
-                        <td className=''>{type}</td>
+                        <td className=''>{classification}</td>
                       </th>
                       {/* {''} */}
                       <th scope='row'>

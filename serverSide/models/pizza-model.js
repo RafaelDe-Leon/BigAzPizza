@@ -10,7 +10,7 @@ const PizzaSchema = new Schema({
     type: String,
     required: true
   },
-  type: {
+  classification: {
     type: String,
     required: true
   }
